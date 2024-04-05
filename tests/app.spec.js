@@ -1,5 +1,5 @@
 // Import the module you want to test
-const app = require('./app');
+const app = require('../app');
 
 // Describe block to group related test cases
 describe('App Module', () => {
