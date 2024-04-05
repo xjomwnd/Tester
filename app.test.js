@@ -7,23 +7,13 @@ describe('Test the root path', () => {
     expect(response.statusCode).toBe(200);
   });
 
-  test('It should respond to the GET method with a form', async () => {
+  test('It should respond to the GET method with a JSON message', async () => {
     const response = await request(app).get('/');
-    expect(response.text).toContain('<form');
+    expect(response.headers['content-type']).toMatch(/json/);
   });
 
-  test('It should respond to the POST method with status code 200', async () => {
-    const response = await request(app)
-      .post('/submit')
-      .send({ data: 'Test data' });
-    expect(response.statusCode).toBe(200);
-  });
-
-  test('It should respond to the POST method with the submitted data', async () => {
-    const testData = 'Test data';
-    const response = await request(app)
-      .post('/submit')
-      .send({ data: testData });
-    expect(response.text).toContain(`Data received: ${testData}`);
+  test('It should respond to the GET method with the correct message', async () => {
+    const response = await request(app).get('/');
+    expect(response.body.message).toBe('Hello, world!');
   });
 });
