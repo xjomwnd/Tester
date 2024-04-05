@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000; // Use the provided port or default to 3000
-const app = require('../tests/supertest');
+const app = require('./tests/supertest');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
