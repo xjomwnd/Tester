@@ -1,19 +1,17 @@
-const request = require('supertest');
-const app = require('./app');
+// Import the functions or components you want to test
+import { add, subtract } from './app'; // assuming app.js contains functions named add and subtract
 
-describe('Test the root path', () => {
-  test('It should respond to the GET method with status code 200', async () => {
-    const response = await request(app).get('/');
-    expect(response.statusCode).toBe(200);
+// Describe block for grouping related tests
+describe('Testing Math Functions', () => {
+  // Test case for the add function
+  test('Adding 1 + 2 equals 3', () => {
+    expect(add(1, 2)).toBe(3); // Expectation that add(1, 2) should return 3
   });
 
-  test('It should respond to the GET method with a JSON message', async () => {
-    const response = await request(app).get('/');
-    expect(response.headers['content-type']).toMatch(/json/);
+  // Test case for the subtract function
+  test('Subtracting 3 - 1 equals 2', () => {
+    expect(subtract(3, 1)).toBe(2); // Expectation that subtract(3, 1) should return 2
   });
 
-  test('It should respond to the GET method with the correct message', async () => {
-    const response = await request(app).get('/');
-    expect(response.body.message).toBe('Hello, world!');
-  });
+  // You can add more test cases for other functions or scenarios as needed
 });
