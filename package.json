@@ -16,7 +16,8 @@
     "express": "^4.19.2",
     "mongodb": "^4.4.1",
     "mongoose": "^6.2.6",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "tests": "^0.4.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.1",
