@@ -1,9 +1,8 @@
-// App.test.js
-import React from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import axios from 'axios';
-import App from './App';
+const React = require('react');
+const { render, fireEvent, waitFor, screen } = require('@testing-library/react');
+require('@testing-library/jest-dom/extend-expect');
+const axios = require('axios');
+const App = require('./App');
 
 jest.mock('axios');
 
@@ -19,3 +18,4 @@ test('submits test form', async () => {
 
   await waitFor(() => expect(screen.getByText('Test submitted successfully!')).toBeInTheDocument());
 });
+
