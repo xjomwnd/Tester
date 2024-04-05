@@ -1,34 +1,41 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+// App.js
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+function App() {
+  const [testName, setTestName] = useState('');
+  const [testScore, setTestScore] = useState('');
 
-// Middleware for parsing JSON and urlencoded form data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-// Route for serving the HTML form
-app.get('/', (req, res) => {
-  res.send(`
-    <form action="/submit" method="post">
-      <label for="data">Enter Data:</label><br>
-      <input type="text" id="data" name="data"><br>
-      <button type="submit">Submit</button>
-    </form>
-  `);
-});
+    try {
+      await axios.post('/submit', { testName, testScore });
+      alert('Test submitted successfully!');
+    } catch (error) {
+      alert('Error submitting test.');
+      console.error(error);
+    }
+  };
 
-// Route for handling form submission
-app.post('/submit', (req, res) => {
-  const { data } = req.body;
-  // Here you can process the submitted data, e.g., save it to a database
-  res.send(`Data received: ${data}`);
-});
+  return (
+    <div>
+      <h1>Test Form</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Test Name:
+          <input type="text" value={testName} onChange={(e) => setTestName(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Test Score:
+          <input type="text" value={testScore} onChange={(e) => setTestScore(e.target.value)} />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-module.exports = app;
+export default App;
