@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../app'); // Adjust the path as per your project structure
+const app = require('./app'); // Adjust the path as per your project structure
 
 // Example test cases for API endpoints
 describe('API endpoints', () => {

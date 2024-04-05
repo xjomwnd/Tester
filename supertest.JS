@@ -1,21 +1,9 @@
-// Import Supertest
+// Import the necessary modules
 const request = require('supertest');
+const app = require('./app'); // Import your Express app
 
-// Import your Express app
-const app = require('./app');
-
-// Example Jest test using Supertest
-test('submit test form', async () => {
-  // Mock the response from the backend server
-  const mockResponse = { success: true };
-  jest.spyOn(axios, 'post').mockResolvedValueOnce({ data: mockResponse });
-
-  // Use Supertest to make a POST request to your server
-  const response = await request(app)
-    .post('/submit')
-    .send({ testName: 'Test', testScore: '100' });
-
-  // Assertions
+// Example test using Jest
+test('GET /api/users should return 200', async () => {
+  const response = await request(app).get('/api/users');
   expect(response.status).toBe(200);
-  expect(response.body).toEqual(mockResponse);
 });
