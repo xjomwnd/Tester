@@ -1,11 +1,10 @@
-// Import Supertest
+/// Import the necessary modules
 const request = require('supertest');
+const app = require('../app'); // Import your Express app
 
-// Import your Express app
-const app = require('./app'); // Replace './app' with the path to your Express app file
-
-// Example Jest test using Supertest
+// Example test using Jest
 test('GET /api/users should return 200', async () => {
   const response = await request(app).get('/api/users');
   expect(response.status).toBe(200);
 });
+
